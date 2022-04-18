@@ -1,0 +1,19 @@
+{
+  "name": "unnamed",
+  "version": "1.0.0",
+  "description": "trip cost estimator",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinandrews/unnamed.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austinandrews/unnamed/issues"
+  },
+  "homepage": "https://github.com/austinandrews/unnamed#readme"
+}
