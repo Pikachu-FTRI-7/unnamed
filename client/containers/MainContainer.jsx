@@ -1,32 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import InputContainer from './InputContainer.jsx';
-import MapContainer from './MapContainer.jsx';
-import TotalsContainer from './TotalsContainer.jsx';
-import TripContainer from './TripContainer.jsx';
+import OutputContainer from './OutputContainer.jsx'
 
-class MainContainer extends Component {
-    constructor(props) {
-        super(props);
-    }
+function MainContainer() {
+    //do some state stuff here
 
-    render() {
-        return (
+    return (
+        <>
             <>
-                <>
-                    <InputContainer />
-                </>
-                <>
-                    <TripContainer />
-                </>
-                <>
-                    <MapContainer />
-                </>
-                <>
-                    <TotalsContainer />
-                </>
+                <InputContainer />
+                <OutputContainer />
             </>
-        );
-    }
+        </>
+    );
 };
 
 export default MainContainer;

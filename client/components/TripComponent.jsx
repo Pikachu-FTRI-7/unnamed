@@ -1,12 +1,12 @@
 import React from 'react';
 
-function TripContainer(props) {
+function TripComponent(props) {
     return (
         <>
-            <h2>Cost of trip: </h2>
+            <span>Cost of trip: $</span>
             <button>Add cost to monthly total</button>
         </>
     )
 }
 
-export default TripContainer;
+export default TripComponent;
