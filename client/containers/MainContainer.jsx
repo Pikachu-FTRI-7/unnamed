@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import InputContainer from './InputContainer.jsx';
-// import InputContainer from './InputContainer.jsx';
-// import MapContainer from './MapContainer.jsx';
+import MapContainer from './MapContainer.jsx';
 import TotalsContainer from './TotalsContainer.jsx';
 import TripContainer from './TripContainer.jsx';
 
@@ -17,10 +16,13 @@ class MainContainer extends Component {
                     <InputContainer />
                 </>
                 <>
-                    <TotalsContainer />
+                    <TripContainer />
                 </>
                 <>
-                    <TripContainer />
+                    <MapContainer />
+                </>
+                <>
+                    <TotalsContainer />
                 </>
             </>
         );
