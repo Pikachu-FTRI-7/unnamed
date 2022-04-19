@@ -5,10 +5,9 @@ import React from 'react';
 function InputContainer(props) {
     return (
         <>
-
-            <span>Start: </span><input></input>
-            <span>End: </span><input></input>
-            <button>Start route/get cost</button>
+            <span>Start: </span><input id='startField'></input>
+            <span>End: </span><input id='endField'></input>
+            <button id='routeButton'>Start route/get cost</button>
         </>
     )
 }

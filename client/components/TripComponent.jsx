@@ -3,8 +3,8 @@ import React from 'react';
 function TripComponent(props) {
     return (
         <>
-            <span>Cost of trip: $</span>
-            <button>Add cost to monthly total</button>
+            <span id='costDisplay'>Cost of trip: $</span>
+            <button id='addToTotalsButton'>Add cost/mileage to monthly totals</button>
         </>
     )
 }
