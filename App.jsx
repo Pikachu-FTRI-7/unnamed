@@ -1,9 +1,10 @@
 import React from 'react';
+import MainContainer from './client/containers/MainContainer.jsx';
 
 const App = () => {
   return(
     <div id ="app">
-        <h1>Hellllooo there</h1>
+       <MainContainer/>
     </div>
   )
 }
