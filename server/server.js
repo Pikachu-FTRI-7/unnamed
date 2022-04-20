@@ -52,6 +52,10 @@ app
     }
   );
 
+app.post('/api', apiController.getMap, (req, res) => {
+  res.status(200).json(res.locals.distance);
+})
+
 // 404 handler
 app.use((req, res) => res.sendStatus(404));
 
