@@ -7,6 +7,7 @@ const app = express();
 const authController = require('./controllers/authController.js');
 const sessionController = require('./controllers/sessionController.js');
 const cookieController = require('./controllers/cookieController.js');
+const apiController = require('./controllers/apiController.js');
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
   console.log("at get '/' route");
   res.render('login', { error: null });
 });
+
 app.post(
   '/',
   authController.verifyUser,
@@ -32,6 +34,10 @@ app.post(
     return res.redirect('/home');
   }
 );
+
+app.post('/api', apiController.getMap, (req, res) => {
+  res.status(200).json(res.locals.distance);
+})
 
 app.get('/signup', (req, res) => res.render('signup', { error: null }));
 

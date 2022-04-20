@@ -22,21 +22,9 @@ function MapComponent(props) {
 
   // Access-Control-Allow-Origin: https://maps.googleapis.com/maps/api/directions/json?origin=${props.inputFromVals[0]}&destination=${props.inputFromVals[1]}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I
 
-  let urlTemplate = `https://maps.googleapis.com/maps/api/directions/json?origin=${props.inputFromVals[0]}&destination=${props.inputFromVals[1]}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I`;
-
-  fetch(urlTemplate, {
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'mode': 'no-cors'
-    }
-  })
-    .then((response) => response.json())
-    .then((response) => console.log(response.routes[0].legs[0].distance.text))
-    .catch((error) => console.log(error));
 
   //for testing purposes, ensuring that values can be passed to TripComponent as props (works)
-  const cost = '5';
-  const distance = '40';
+
 
 
   return (
