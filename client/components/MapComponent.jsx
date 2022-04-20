@@ -5,65 +5,33 @@ import TripComponent from './TripComponent.jsx';
 //TODO: perform API call
 //TODO: render map from API call, see example code below (from docs)
 
-
-/*
-    build object to send to Google Maps API
-
-    required properties: 
-        origin: props.inputFromVals[0], 
-        distination: props.inputFromVals[1], 
-        travelMode: 'DRIVING'
-
-     {
-  origin: LatLng | String | google.maps.Place,
-  destination: LatLng | String | google.maps.Place,
-  travelMode: TravelMode,
-  transitOptions: TransitOptions,
-  drivingOptions: DrivingOptions,
-  unitSystem: UnitSystem,
-  waypoints[]: DirectionsWaypoint,
-  optimizeWaypoints: Boolean,
-  provideRouteAlternatives: Boolean,
-  avoidFerries: Boolean,
-  avoidHighways: Boolean,
-  avoidTolls: Boolean,
-  region: String
-}
-
-then use the object to send the request:
-
-function initMap() {
-  var directionsService = new google.maps.DirectionsService();
-  var directionsRenderer = new google.maps.DirectionsRenderer();
-  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-  var mapOptions = {
-    zoom:7,
-    center: chicago
-  }
-  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  directionsRenderer.setMap(map);
-}
-
-function calcRoute() {
-  var start = document.getElementById('start').value;
-  var end = document.getElementById('end').value;
-  var request = {
-    origin: start,
-    destination: end,
-    travelMode: 'DRIVING'
-  };
-  directionsService.route(request, function(result, status) {
-    if (status == 'OK') {
-      directionsRenderer.setDirections(result);
-    }
-  });
-}
-    */
-
-
 function MapComponent(props) {
   //for testing purposes, ensuring that map can get props from output container (works);
   let display = props.inputFromVals;
+
+  //https://maps.googleapis.com/maps/api/directions/json?origin=San+Diego&destination=PartyCity&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I
+
+  //step1: build URL (using template above), passing in user input for origin and destination params
+
+  //step2: send get request to built URL
+
+  //step3: extract distance property from response, assign to constant and pass to TripComponent as props
+
+  //step4: use distance property to calculate estimated trip cost, assign to constant and pass to TripComponent as props.
+
+  // Access-Control-Allow-Origin: https://maps.googleapis.com/maps/api/directions/json?origin=${props.inputFromVals[0]}&destination=${props.inputFromVals[1]}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I
+
+  let urlTemplate = `https://maps.googleapis.com/maps/api/directions/json?origin=${props.inputFromVals[0]}&destination=${props.inputFromVals[1]}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I`;
+
+  fetch(urlTemplate, {
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'mode': 'no-cors'
+    }
+  })
+    .then((response) => response.json())
+    .then((response) => console.log(response.routes[0].legs[0].distance.text))
+    .catch((error) => console.log(error));
 
   //for testing purposes, ensuring that values can be passed to TripComponent as props (works)
   const cost = '5';
