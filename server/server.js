@@ -9,6 +9,7 @@ const sessionController = require('./controllers/sessionController.js');
 const cookieController = require('./controllers/cookieController.js');
 const apiController = require('./controllers/apiController.js');
 app.set('view engine', 'ejs');
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 

@@ -8,7 +8,7 @@ import TripComponent from './TripComponent.jsx';
 
 function MapComponent(props) {
   //for testing purposes, ensuring that map can get props from output container (works);
-  let display = props.inputFromVals;
+  //let display = props.inputFromVals;
 
   //https://maps.googleapis.com/maps/api/directions/json?origin=San+Diego&destination=PartyCity&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I
 
@@ -24,13 +24,15 @@ function MapComponent(props) {
 
 
   //for testing purposes, ensuring that values can be passed to TripComponent as props (works)
-
+  // console.log('cost in mapcomponent', props.cost);
+  console.log('distance in mapcomponent', props.distance);
 
 
   return (
     <>
-      <h4>{display.join(', ')}</h4>
-      <TripComponent cost={cost} distance={distance} />
+      <h3>{props.inputFromVals}</h3>
+      <TripComponent distance={props.distance} />
+      {/* <TripComponent cost={props.cost} distance={props.distance} /> */}
     </>
 
   )
