@@ -19,39 +19,40 @@ app.use(
   express.static(path.resolve(__dirname, '../build'))
 );
 
-// render login page as our root directory
-app.get('/', (req, res) => {
-  console.log("at get '/' route");
-  res.render('login', { error: null });
-});
+// render login page at our root directory
+app
+  .route('/')
+  .get((req, res) => {
+    console.log('at get / GET');
+    res.render('login', { error: null });
+  })
+  .post(
+    authController.verifyUser,
+    sessionController.startSession,
+    cookieController.setSSIDCookie,
+    (req, res) => {
+      console.log('at / POST');
+      return res.redirect('/home');
+    }
+  );
 
-app.post(
-  '/',
-  authController.verifyUser,
-  sessionController.startSession,
-  cookieController.setSSIDCookie,
-  (req, res) => {
-    return res.redirect('/home');
-  }
-);
+app
+  .route('/signup')
+  .get((req, res) => {
+    console.log('at /signup GET');
+    res.render('signup', { error: null });
+  })
+  .post(
+    authController.createUser,
+    sessionController.startSession,
+    cookieController.setSSIDCookie,
+    (req, res) => {
+      console.log('at /signup POST');
+      res.redirect('/home');
+    }
+  );
 
-app.post('/api', apiController.getMap, (req, res) => {
-  res.status(200).json(res.locals.distance);
-})
-
-app.get('/signup', (req, res) => res.render('signup', { error: null }));
-
-app.post(
-  '/signup',
-  authController.createUser,
-  sessionController.startSession,
-  cookieController.setSSIDCookie,
-  (req, res) => {
-    console.log('at POST /signup');
-    return res.redirect('/home');
-  }
-);
-
+// 404 handler
 app.use((req, res) => res.sendStatus(404));
 
 // global error handler

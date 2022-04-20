@@ -5,7 +5,7 @@
 </head>
 <body>
   Login
-  <form method="POST" action='/login'>
+  <form method="POST" action='/'>
     <input name="username" type="text" placeholder="username"></input>
     <input name="password" type="password" placeholder="password"></input>
     <input type='submit' value="login">
@@ -14,6 +14,6 @@
       <div>  Error </div>
       <div> <%= error %> </div>
     <% } %> 
-  <a href='./signup'>Sign up</a>
+  <a href='signup'>Sign up</a>
 </body>
 </html>

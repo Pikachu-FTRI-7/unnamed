@@ -6,30 +6,35 @@ const authController = {};
 authController.createUser = (req, res, next) => {
   console.log('at createUser middleware');
   console.log(req.body);
+  const { username, password } = req.body;
   if (!username || !password)
     return next({
-      log: 'Missing username or password while creating user',
+      error: 'Missing username or password while creating user',
     });
-
-  User.create({ username: username, password: password }, (err, user) => {
-    if (err) {
-      return next({
-        log: 'Error in authontroller.createUser',
-        status: 400,
-        message: {
-          error: 'An error occured while creating the user in Mongo DB',
-        },
-      });
-    } else {
-      res.locals.user = user;
-    }
-  });
-  return next();
+  else {
+    console.log('creating user');
+    User.create({ username: username, password: password }, (err, user) => {
+      if (err) {
+        return next({
+          log: 'Error in authontroller.createUser',
+          status: 400,
+          message: {
+            error: 'An error occured while creating the user in Mongo DB',
+          },
+        });
+      } else {
+        res.locals.user = user;
+        res.locals.userID = user._doc._id;
+        return next();
+      }
+    });
+  }
 };
 
 authController.verifyUser = (req, res, next) => {
   console.log('at verify user controller');
   const { username, password } = req.body;
+  console.log('VERIFYING', username, password);
   if (!username || !password)
     return next({
       log: 'Missing username or password while logging in',
@@ -51,11 +56,10 @@ authController.verifyUser = (req, res, next) => {
     else {
       if (user.password !== password) {
         //if password incorrect, redirect to login page
-        res.redirect('/login');
+        res.render('login', { error: 'incorrect password' });
       } else {
         res.locals.user = user;
-
-        res.locals.userId = user._doc._id;
+        res.locals.userID = user._doc._id;
         return next();
       }
     }
