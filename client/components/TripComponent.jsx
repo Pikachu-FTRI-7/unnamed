@@ -20,7 +20,6 @@ function TripComponent(props) {
             });
     }
 
-
     return (
         <>
             <h5 id='costDisplay'>Cost of trip: ${props.cost}</h5>
