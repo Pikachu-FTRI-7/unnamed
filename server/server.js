@@ -54,7 +54,9 @@ app
   );
 
 app.post('/api', apiController.getMap, (req, res) => {
-  res.status(200).json(res.locals.distance);
+  console.log('at api route');
+  console.log('res.locals', res.locals.distance)
+  return res.status(200).json(res.locals.distance);
 })
 
 // 404 handler

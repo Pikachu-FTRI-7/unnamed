@@ -8,8 +8,9 @@ apiController.getMap = (req, res, next) => {
     fetch(url)
         .then((response) => response.json())
         .then((response) => {
-            console.log('distance', response.routes[0].legs[0].distance);
-            res.locals.distance = response.routes[0].legs[0].distance
+            console.log('distance', response.routes[0].legs[0].distance.text);
+            res.locals.distance = response.routes[0].legs[0].distance.text
+            return next();
         })
         .catch((error) => next({
             log: 'Error in apiController.getMap',
@@ -17,7 +18,6 @@ apiController.getMap = (req, res, next) => {
             message: `Error ${error}`
         }));
     // console.log("apiContoller distance", res.locals.distance);
-    return next();
 };
 
 module.exports = apiController;

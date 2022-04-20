@@ -8,7 +8,7 @@ import TotalsComponent from '../components/TotalsComponent.jsx';
 
 function OutputContainer() {
     //defines input state and function to reset that state
-    const [inputValues, setInputValues] = useState(['hello', 'mia']);
+    const [inputValues, setInputValues] = useState(['', '']);
     const [distance, setDistanceValues] = useState('');
     const [cost, setCostValues] = useState(0);
 
@@ -40,7 +40,7 @@ function OutputContainer() {
                 console.log(err);
             });
 
-        // setCostValues(((distance.slice(0, distance.length - 2) / 30) * 4))
+        setCostValues(((Number(distance.slice(0, distance.length - 2)) / 30) * 4))
 
         return;
     }
