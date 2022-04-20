@@ -1,9 +1,8 @@
-import { render } from "@testing-library/react";
 import React, { useState } from "react";
 
 import MapComponent from '../components/MapComponent.jsx';
 import TotalsComponent from '../components/TotalsComponent.jsx';
-import TripComponent from '../components/TripComponent.jsx';
+
 //TODO: figure out how to clear the input field values after they have been submitted
 
 
@@ -13,7 +12,6 @@ function OutputContainer() {
 
     //this function that will grab values of entry fields and reset state
     function getValsforInputForMapComponent() {
-
         setInputValues([document.getElementById('startField').value, document.getElementById('endField').value]);
         return;
     }
