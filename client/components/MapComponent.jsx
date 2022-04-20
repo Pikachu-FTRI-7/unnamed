@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TripComponent from './TripComponent.jsx';
+
 //TODO: get distance from result of API call, bind to variable and pass as props to TripComponent
 //TODO: get cost from distance, plus calculations based on mpg and price of gas, bind to variable and pass as props to TripComponent
 //TODO: perform API call
