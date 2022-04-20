@@ -18,39 +18,13 @@ app.use(
   express.static(path.resolve(__dirname, '../build'))
 );
 
+// render login page as our root directory
 app.get('/', (req, res) => {
   console.log("at get '/' route");
   res.render('login', { error: null });
 });
-
-// app.get('/home', (req, res) => {
-//   console.log('at /home route');
-//   app.use(express.static(path.resolve(__dirname, '../build')));
-//   //return res.status(200).sendFile(path.join(__dirname, '../build/index.html'));
-// });
-
-app.get(
-  '/signup',
-  (req, res) => res.render('signup', { error: null })
-  //res.status(200).sendFile(path.join(__dirname, '../client/signup.ejs'))
-);
-
 app.post(
-  '/signup',
-  authController.createUser,
-  sessionController.startSession,
-  cookieController.setSSIDCookie,
-  (req, res) => {
-    return res.redirect('/home');
-  }
-);
-// creates user in db and returns user object with userID
-// set userID on response object and move to startSession middleware
-// startSession controller uses userID on response object to create session(withID) in db
-// setCookie controller will attach sessionID to response and send back to user
-
-app.post(
-  '/login',
+  '/',
   authController.verifyUser,
   sessionController.startSession,
   cookieController.setSSIDCookie,
@@ -58,12 +32,19 @@ app.post(
     return res.redirect('/home');
   }
 );
-// attempts to fetch a user by sending request to authController
-// if verified:
-// set userID on response object and move to startSession middleware
-// startSession controller uses userID on response object to create session(withID) in db
-// setCookie controller will attach sessionID to response and send back to use
-// authentication endpoint
+
+app.get('/signup', (req, res) => res.render('signup', { error: null }));
+
+app.post(
+  '/signup',
+  authController.createUser,
+  sessionController.startSession,
+  cookieController.setSSIDCookie,
+  (req, res) => {
+    console.log('at POST /signup');
+    return res.redirect('/home');
+  }
+);
 
 app.use((req, res) => res.sendStatus(404));
 

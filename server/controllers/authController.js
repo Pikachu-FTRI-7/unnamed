@@ -4,7 +4,8 @@ const User = require('../models/userModel.js');
 const authController = {};
 
 authController.createUser = (req, res, next) => {
-  const { username, password } = req.body;
+  console.log('at createUser middleware');
+  console.log(req.body);
   if (!username || !password)
     return next({
       log: 'Missing username or password while creating user',
@@ -21,19 +22,19 @@ authController.createUser = (req, res, next) => {
       });
     } else {
       res.locals.user = user;
-      console.log(res.locals.user);
-      return next();
     }
   });
+  return next();
 };
 
 authController.verifyUser = (req, res, next) => {
+  console.log('at verify user controller');
   const { username, password } = req.body;
   if (!username || !password)
     return next({
       log: 'Missing username or password while logging in',
     });
-  User.findone({ username: username }, (err, user) => {
+  User.findOne({ username: username }, (err, user) => {
     if (err) {
       return next({
         log: 'Error in authontroller.verifyUser',

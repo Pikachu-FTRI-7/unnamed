@@ -5,7 +5,6 @@ const sessionController = {};
 
 sessionController.hasSession = (req, res, next) => {
   console.log('at sessionController.hasSession');
-  res.redirect('/');
   Session.find({ cookieID: req.cookies.ssid }, (err, session) => {
     // if find throws error, render login page with error from mongo
     if (err) {
@@ -24,6 +23,7 @@ sessionController.hasSession = (req, res, next) => {
 };
 
 sessionController.startSession = (req, res, next) => {
+  console.log('at sessionController.startSesssion');
   const cookieID = res.locals.user._id || req.cookies.ssid;
   const createAt = Date.now();
 
