@@ -7,8 +7,8 @@ const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
   .connect(MONGO_URI, {
-    userNewUrlParser: true,
-    userUnifiedTopology: true,
+    //userNewUrlParser: true,
+    //userUnifiedTopology: true,
     dbName: "Pikachu",
   })
   .then(() => console.log("Connected to Mongo DB"))
