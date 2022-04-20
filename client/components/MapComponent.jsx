@@ -30,8 +30,8 @@ function MapComponent(props) {
 
   return (
     <>
-      <h3>{props.inputFromVals}</h3>
-      <TripComponent distance={props.distance} />
+      <h3>{props.distance}</h3>
+      <TripComponent distance={props.distance}/>
       {/* <TripComponent cost={props.cost} distance={props.distance} /> */}
     </>
 

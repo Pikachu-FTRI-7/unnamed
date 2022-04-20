@@ -34,13 +34,13 @@ function OutputContainer() {
             body: JSON.stringify({ fetchUrl: urlTemplate }),
         })
             .then((response) => response.json())
-            .then((response) => console.log('this is the value of the response from the server: ', response))
             .then((response) => setDistanceValues(response))
             .catch((err) => {
                 console.log(err);
             });
 
-        setCostValues(((Number(distance.slice(0, distance.length - 2)) / 30) * 4))
+        setCostValues(((Number(distance.slice(0, distance.length - 3).replace(/'/g, '')) / 30) * 4))
+        console.log('this is the value of cost:', cost);
 
         return;
     }
