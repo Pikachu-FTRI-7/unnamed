@@ -62,21 +62,21 @@ function calcRoute() {
 
 
 function MapComponent(props) {
-    //for testing purposes, ensuring that map can get props from output container (works);
-    let display = props.inputFromVals;
+  //for testing purposes, ensuring that map can get props from output container (works);
+  let display = props.inputFromVals;
 
-    //for testing purposes, ensuring that values can be passed to TripComponent as props (works)
-    const cost = '5';
-    const distance = '40';
+  //for testing purposes, ensuring that values can be passed to TripComponent as props (works)
+  const cost = '5';
+  const distance = '40';
 
 
-    return (
-        <>
-            <h4>{display.join(', ')}</h4>
-            <TripComponent cost={cost} distance={distance} />
-        </>
+  return (
+    <>
+      <h4>{display.join(', ')}</h4>
+      <TripComponent cost={cost} distance={distance} />
+    </>
 
-    )
+  )
 }
 
 export default MapComponent;

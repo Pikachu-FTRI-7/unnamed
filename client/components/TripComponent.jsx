@@ -3,8 +3,21 @@ import React from 'react';
 //TODO: add functionality to add cost and distance to DB in addTripToTotals()
 
 function TripComponent(props) {
+
     function addTripToTotals() {
-        console.log('trip added to totals');
+        fetch('/someEndpoint', {
+            method: 'POST',
+            body: JSON.stringify({
+                cost: props.cost,
+                distance: props.distance
+            }),
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then((response) => response.json())
+            .then((response) => console.log(response))
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
 
