@@ -4,6 +4,7 @@ import MapComponent from '../components/MapComponent.jsx';
 import TotalsComponent from '../components/TotalsComponent.jsx';
 
 //TODO: figure out how to clear the input field values after they have been submitted
+//TODO: Figure out why cost is only updating after the *second* click after page load
 
 
 function OutputContainer() {
@@ -19,14 +20,7 @@ function OutputContainer() {
         let endLocation = document.getElementById('endField').value;
         console.log('location vals in OutputContainer: ', startLocation, endLocation);
         setInputValues([startLocation, endLocation]);
-        console.log("inputvalues", startLocation, endLocation);
         let urlTemplate = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLocation}&destination=${endLocation}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I`;
-
-
-        console.log("this is the value of urlTemplate in OutputContainer: ", urlTemplate);
-        //step1: send start, end and apiKey to backend so that backend can make fetch request to google maps API
-        //step2: create route (app.get(/someEndpoint)) and middleware (maybe just one controller) to handle request from frontend
-
 
         fetch('/api', {
             method: 'POST',
@@ -39,7 +33,8 @@ function OutputContainer() {
                 console.log(err);
             });
 
-        setCostValues(((Number(distance.slice(0, distance.length - 3).replace(/'/g, '')) / 30) * 4))
+        let miles = Number(distance.slice(0, distance.length - 3).replace(',', ''));
+        setCostValues((miles / 25) * 4.5);
         console.log('this is the value of cost:', cost);
 
         return;
@@ -48,7 +43,7 @@ function OutputContainer() {
     return (
         <>
             <button id='routeButton' onClick={getValsforInputForMapComponent}>Start route/get cost</button>
-            <MapComponent id='inputVals' inputFromVals={inputValues} distance={distance} />
+            <MapComponent id='inputVals' inputFromVals={inputValues} distance={distance} cost={cost} />
             {/* <MapComponent id='inputVals' inputFromVals={inputValues} cost={cost} distance={distance} /> */}
             <TotalsComponent />
         </>

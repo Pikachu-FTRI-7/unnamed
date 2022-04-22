@@ -22,7 +22,7 @@ function TripComponent(props) {
 
     return (
         <>
-            <h5 id='costDisplay'>Cost of trip: $</h5>
+            <h5 id='costDisplay'>Cost of trip: $ {props.cost}</h5>
             <h5 id='mileageDisplay'>Distance of trip: {props.distance}</h5 >
             <button id='addToTotalsButton' onClick={addTripToTotals}>Add cost/mileage to monthly totals</button>
         </>

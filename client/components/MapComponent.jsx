@@ -31,7 +31,7 @@ function MapComponent(props) {
   return (
     <>
       <h3>{props.distance}</h3>
-      <TripComponent distance={props.distance}/>
+      <TripComponent distance={props.distance} cost={props.cost}/>
       {/* <TripComponent cost={props.cost} distance={props.distance} /> */}
     </>
 
