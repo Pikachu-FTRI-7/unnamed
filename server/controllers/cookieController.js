@@ -5,6 +5,7 @@ cookieController.setSSIDCookie = (req, res, next) => {
   res.clearCookie('ssid');
   res.cookie('ssid', `${res.locals.userID}`, {
     httpOnly: true,
+    maxAge: 300000
   });
   return next();
 };

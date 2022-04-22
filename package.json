@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open"
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack serve --hot --open\" \"cross-env NODE_ENV=development nodemon server/server.js \""
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "concurrently": "^7.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.6.0",
+    "dotenv-webpack": "^7.1.0",
     "eslint": "^8.10.0",
     "eslint-plugin-react": "^7.29.2",
     "file-loader": "^6.2.0",

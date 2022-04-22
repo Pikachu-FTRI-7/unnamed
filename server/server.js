@@ -7,7 +7,9 @@ const app = express();
 const authController = require('./controllers/authController.js');
 const sessionController = require('./controllers/sessionController.js');
 const cookieController = require('./controllers/cookieController.js');
+const apiController = require('./controllers/apiController.js');
 app.set('view engine', 'ejs');
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
@@ -50,6 +52,12 @@ app
       res.redirect('/home');
     }
   );
+
+app.post('/api', apiController.getMap, (req, res) => {
+  console.log('at api route');
+  console.log('res.locals', res.locals.distance)
+  return res.status(200).json(res.locals.distance);
+})
 
 // 404 handler
 app.use((req, res) => res.sendStatus(404));
