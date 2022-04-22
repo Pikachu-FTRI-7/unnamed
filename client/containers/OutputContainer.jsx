@@ -18,9 +18,8 @@ function OutputContainer() {
     function getValsforInputForMapComponent() {
         let startLocation = document.getElementById('startField').value;
         let endLocation = document.getElementById('endField').value;
-        console.log('location vals in OutputContainer: ', startLocation, endLocation);
         setInputValues([startLocation, endLocation]);
-        let urlTemplate = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLocation}&destination=${endLocation}&key=AIzaSyDV6u58bKpQuz9eqWiCtNdAfkcp43Pe66I`;
+        let urlTemplate = `https://maps.googleapis.com/maps/api/directions/json?origin=${startLocation}&destination=${endLocation}&key=${process.env.GOOGLE_API_KEY}`;
 
         fetch('/api', {
             method: 'POST',
@@ -44,7 +43,6 @@ function OutputContainer() {
         <>
             <button id='routeButton' onClick={getValsforInputForMapComponent}>Start route/get cost</button>
             <MapComponent id='inputVals' inputFromVals={inputValues} distance={distance} cost={cost} />
-            {/* <MapComponent id='inputVals' inputFromVals={inputValues} cost={cost} distance={distance} /> */}
             <TotalsComponent />
         </>
     )
